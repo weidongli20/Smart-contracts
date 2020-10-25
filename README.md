@@ -1,14 +1,12 @@
-# Unit 20 - "Looks like we've made our First Contract!"
+# Smart Contracts
 
 ![contract](https://image.shutterstock.com/z/stock-photo-two-hands-handshake-polygonal-low-poly-hud-illustration-smart-contract-agreement-blockchain-and-1161295627.jpg)
 
 ## Background
 
-Your new startup has created its own Ethereum-compatible blockchain to help connect financial institutions, and the team wants to build smart contracts to automate some company finances to make everyone's lives easier, increase transparency, and to make accounting and auditing practically automatic!
+Program smart contracts with Solidity: creating a few `ProfitSplitter` contracts. These contracts will do several things to automate some company finances to make everyone's lives easier, increase transparency, and make accouting and auditing practically automic:
 
-Fortunately, you've been learning how to program smart contracts with Solidity! What you will be doing this assignment is creating a few `ProfitSplitter` contracts. These contracts will do several things:
-
-* Pay your Associate-level employees quickly and easily.
+* Pay the Associate-level employees quickly and easily.
 
 * Distribute profits to different tiers of employees.
 
@@ -16,15 +14,13 @@ Fortunately, you've been learning how to program smart contracts with Solidity! 
 
 ## Files
 
-* [`AssociateProfitSplitter.sol`](Starter-Code/AssociateProfitSplitter.sol) -- Level 1 starter code.
+* [`AssociateProfitSplitter.sol`](Starter-Code/AssociateProfitSplitter.sol) -- Level 1 code.
 
-* [`TieredProfitSplitter.sol`](Starter-Code/TieredProfitSplitter.sol) -- Level 2 starter code.
+* [`TieredProfitSplitter.sol`](Starter-Code/TieredProfitSplitter.sol) -- Level 2 code.
 
-* [`DeferredEquityPlan.sol`](Starter-Code/DeferredEquityPlan.sol) -- Level 3 starter code.
+* [`DeferredEquityPlan.sol`](Starter-Code/DeferredEquityPlan.sol) -- Level 3 code.
 
-## Instructions
-
-This assignment has 3 levels of difficulty, with each contract increasing in complexity and capability. Start with Level 1, then move forward as you complete the challenges. You can build all three with the skills you already have!
+There are 3 levels of difficulty, with each contract increasing in complexity and capability. 
 
 * **Level One** is an `AssociateProfitSplitter` contract. This will accept Ether into the contract and divide the Ether evenly among the associate level employees. This will allow the Human Resources department to pay employees quickly and efficiently.
 
@@ -32,7 +28,7 @@ This assignment has 3 levels of difficulty, with each contract increasing in com
 
 * **Level Three** is a `DeferredEquityPlan` that models traditional company stock plans. This contract will automatically manage 1000 shares with an annual distribution of 250 over 4 years for a single employee.
 
-### Starting your project
+### Starting
 
 Navigate to the [Remix IDE](https://remix.ethereum.org) and create a new contract called `AssociateProfitSplitter.sol` using the starter code for level one above.
 
@@ -40,7 +36,7 @@ While developing and testing your contract, use the [Ganache](https://www.truffl
 
 ### Level One: The `AssociateProfitSplitter` Contract
 
-At the top of your contract, you will need to define the following `public` variables:
+The `public` variables:
 
 * `employee_one` -- The `address` of the first employee. Make sure to set this to `payable`.
 
@@ -48,7 +44,7 @@ At the top of your contract, you will need to define the following `public` vari
 
 * `employee_three` -- The third `address payable` that represents the third employee.
 
-Create a constructor function that accepts:
+The constructor function that accepts:
 
 * `address payable _one`
 
@@ -56,15 +52,15 @@ Create a constructor function that accepts:
 
 * `address payable _three`
 
-Within the constructor, set the employee addresses to equal the parameter values. This will allow you to avoid hardcoding the employee addresses.
+Within the constructor, set the employee addresses to equal the parameter values. 
 
-Next, create the following functions:
+The functions:
 
-* `balance` -- This function should be set to `public view returns(uint)`, and must return the contract's current balance. Since we should always be sending Ether to the beneficiaries, this function should always return `0`. If it does not, the `deposit` function is not handling the remainders properly and should be fixed. This will serve as a test function of sorts.
+* `balance` -- This function should be set to `public view returns(uint)`, and must return the contract's current balance. 
 
 * `deposit` -- This function should set to `public payable` check, ensuring that only the owner can call the function.
 
-  * In this function, perform the following steps:
+  * In this function:
 
     * Set a `uint amount` to equal `msg.value / 3;` in order to calculate the split value of the Ether.
 
@@ -76,23 +72,13 @@ Next, create the following functions:
 
     * We may either have `1` or `2` wei leftover, so transfer the `msg.value - amount * 3` back to `msg.sender`. This will re-multiply the `amount` by 3, then subtract it from the `msg.value` to account for any leftover wei, and send it back to Human Resources.
 
-* Create a fallback function using `function() external payable`, and call the `deposit` function from within it. This will ensure that the logic in `deposit` executes if Ether is sent directly to the contract. This is important to prevent Ether from being locked in the contract since we don't have a `withdraw` function in this use-case.
-
-#### Test the contract
-
-In the `Deploy` tab in Remix, deploy the contract to your local Ganache chain by connecting to `Injected Web3` and ensuring MetaMask is pointed to `localhost:8545`.
-
-You will need to fill in the constructor parameters with your designated `employee` addresses.
-
-Test the `deposit` function by sending various values. Keep an eye on the `employee` balances as you send different amounts of Ether to the contract and ensure the logic is executing properly.
-
-![Remix Testing](Images/remix-test.png)
+* A fallback function using `function() external payable`, and call the `deposit` function from within it. This will ensure that the logic in `deposit` executes if Ether is sent directly to the contract. This is important to prevent Ether from being locked in the contract since we don't have a `withdraw` function in this use-case.
 
 ### Level Two: The `TieredProfitSplitter` Contract
 
-In this contract, rather than splitting the profits between Associate-level employees, you will calculate rudimentary percentages for different tiers of employees (CEO, CTO, and Bob).
+In this contract, rather than splitting the profits between Associate-level employees, will calculate rudimentary percentages for different tiers of employees (CEO, CTO, and Bob).
 
-Using the starter code, within the `deposit` function, perform the following:
+The `deposit` function, perform the following:
 
 * Calculate the number of points/units by dividing `msg.value` by `100`.
 
@@ -124,11 +110,9 @@ Using the starter code, within the `deposit` function, perform the following:
 
   * The provided `balance` function can be used as a test to see if the logic you have in the `deposit` function is valid. Since all of the Ether should be transferred to employees, this function should always return `0`, since the contract should never store Ether itself.
 
-  * Note: The 100 wei threshold is due to the way we calculate the points. If we send less than 100 wei, for example, 80 wei, `points` would equal `0` because `80 / 100` equals `0` because the remainder is discarded. We will learn more advanced arbitrary precision division later in the course. In this case, we can disregard the threshold as 100 wei is a significantly smaller value than the Ether or Gwei units that are far more commonly used in the real world (most people aren't sending less than a penny's worth of Ether).
-
 ### Level Three: The `DeferredEquityPlan` Contract
 
-In this contract, we will be managing an employee's "deferred equity incentive plan" in which 1000 shares will be distributed over 4 years to the employee. We won't need to work with Ether in this contract, but we will be storing and setting amounts that represent the number of distributed shares the employee owns and enforcing the vetting periods automatically.
+In this contract, will be managing an employee's "deferred equity incentive plan" in which 1000 shares will be distributed over 4 years to the employee. We won't need to work with Ether in this contract, but we will be storing and setting amounts that represent the number of distributed shares the employee owns and enforcing the vetting periods automatically.
 
 * **A two-minute primer on deferred equity incentive plans:** In this set-up, employees receive shares for joining and staying with the firm. They may receive, for example, an award of 1,000 shares when joining, but with a 4 year vesting period for these shares. This means that these shares would stay with the company, with only 250 shares (1,000/4) actually distributed to and owned by the employee each year. If the employee leaves within the first 4 years, he or she would forfeit ownership of any remaining (“unvested”) shares.
 
@@ -136,7 +120,7 @@ In this contract, we will be managing an employee's "deferred equity incentive p
 
   * Specific vesting periods, the dollar/crypto value of shares awarded, and the percentage equity stake (the percentage ownership of the company) all tend to vary according to the company, the specialized skills, or seniority of the employee, and the negotiating positions of the employee/company. If you receive an offer from a company offering equity (which is great!), just make sure you can clarify the current dollar value of those shares being offered (based on, perhaps, valuation implied by the most recent outside funding round). In other words, don’t be content with just receiving “X” number of shares without having a credible sense of what amount of dollars that “X” number represents. Be sure to understand your vesting schedule as well, particularly if you think you may not stick around for an extended period of time.
 
-Using the starter code, perform the following:
+The code, perform the following:
 
 * Human Resources will be set in the constructor as the `msg.sender`, since HR will be deploying the contract.
 
@@ -170,36 +154,9 @@ Using the starter code, perform the following:
 
   * The final `if` statement provided checks that in case the employee does not cash out until 5+ years after the contract start, the contract does not reward more than the `total_shares` agreed upon in the contract.
 
-* Deploy and test your contract locally.
-
-  * For this contract, test the timelock functionality by adding a new variable called `uint fakenow = now;` as the first line of the contract, then replace every other instance of `now` with `fakenow`. Utilize the following `fastforward` function to manipulate `fakenow` during testing.
-
-  * Add this function to "fast forward" time by 100 days when the contract is deployed (requires setting up `fakenow`):
-
-    ```solidity
-    function fastforward() public {
-        fakenow += 100 days;
-    }
-    ```
-
-  * Once you are satisfied with your contract's logic, revert the `fakenow` testing logic.
-
-* Congratulate yourself for building such complex smart contracts in your first week of Solidity! You are learning specialized skills that are highly desired in the blockchain industry!
-
-### Deploy the contracts to a live Testnet
-
-Once you feel comfortable with your contracts, point MetaMask to the Kovan or Ropsten network. Ensure you have test Ether on this network!
-
-After switching MetaMask to Kovan, deploy the contracts as before and copy/keep a note of their deployed addresses. The transactions will also be in your MetaMask history, and on the blockchain permanently to explore later.
-
-![Remix Deploy](Images/remix-deploy.png)
-
 ## Resources
 
-Building the next financial revolution isn't easy, but we need your help, don't be intimidated by the semicolons!
-
-There are lots of great resources to learn Solidity. Remember, you are helping push the very edge of this space forward,
-so don't feel discouraged if you get stuck! In fact, you should be proud that you are taking on such a challenge!
+There are lots of great resources to learn Solidity.
 
 For some succinct and straightforward code snips, check out [Solidity By Example](https://github.com/raineorshine/solidity-by-example)
 
@@ -208,9 +165,3 @@ For a more extensive list of awesome Solidity resources, checkout [Awesome Solid
 Another tutorial is available at [EthereumDev.io](https://ethereumdev.io/)
 
 If you enjoy building games, here's an excellent tutorial called [CryptoZombies](https://cryptozombies.io/)
-
-## Submission
-
-Create a `README.md` that explains what testnet the contract is on, the motivation for the contract.
-
-Upload this to a Github repository that explains how the contract works, and provide the testnet address for others to be able to send to.
