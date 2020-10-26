@@ -12,6 +12,8 @@ Program smart contracts with Solidity: creating a few `ProfitSplitter` contracts
 
 * Distribute company shares for employees in a "deferred equity incentive plan" automatically.
 
+However, before lanuche a project on the Ethereum blockchain (or before make changes onto the blockchain), deploy to an Ethereum Test Network or "testnet", which simulating Ethereum, gives developers, the community, and users a chance to test the codes implemented before real assets are involved.
+
 ## Files
 
 * [`AssociateProfitSplitter.sol`](Starter-Code/AssociateProfitSplitter.sol) -- Level 1 code.
