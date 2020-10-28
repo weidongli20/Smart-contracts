@@ -5,11 +5,13 @@ contract TieredProfitSplitter {
     address payable employee_one; // ceo
     address payable employee_two; // cto
     address payable employee_three; // bob
+    address human_resources;
 
     constructor(address payable _one, address payable _two, address payable _three) public {
         employee_one = _one;
         employee_two = _two;
         employee_three = _three;
+        human_resources = msg.sender;
     }
 
     // Should always return 0! Use this to test your `deposit` function's logic
