@@ -20,6 +20,9 @@ contract TieredProfitSplitter {
     }
 
     function deposit() public payable {
+        
+        require(msg.sender == human_resources, "Only the HR can call this function!");
+        
         uint points = msg.value / 100; // Calculates rudimentary percentage by dividing msg.value into 100 units
         uint total;
         uint amount;
