@@ -132,7 +132,7 @@ You will need to fill in the constructor parameters with your designated `employ
 
 Test the `deposit` function by sending various values. Keep an eye on the `employee` balances as you send different amounts of Ether to the contract and ensure the logic is executing properly.
 
-![Remix Testing](Images/level2-2.png)
+![Remix Testing](Images/level2-1.png)
 
 ### Level Three: The `DeferredEquityPlan` Contract
 
