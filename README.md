@@ -4,7 +4,7 @@
 
 ## Background
 
-Program smart contracts with Solidity: creating a few `ProfitSplitter` contracts. These contracts will do several things to automate some company finances to make everyone's lives easier, increase transparency, and make accouting and auditing practically automic:
+This is to program smart contracts with Solidity: creating a few `ProfitSplitter` contracts. These contracts will do several things to automate some company finances to make everyone's lives easier, increase transparency, and make accouting and auditing practically automatic:
 
 * Pay the Associate-level employees quickly and easily.
 
@@ -12,9 +12,9 @@ Program smart contracts with Solidity: creating a few `ProfitSplitter` contracts
 
 * Distribute company shares for employees in a "deferred equity incentive plan" automatically.
 
-However, before lanuche a project on the Ethereum blockchain (or before make changes onto the blockchain), deploy to an Ethereum Test Network or "testnet", which simulating Ethereum, gives developers, the community, and users a chance to test the codes implemented before real assets are involved.
+However, before lanuching a project on the Ethereum blockchain (or before make changes onto the blockchain), deploying to an Ethereum Test Network or "testnet", which simulates Ethereum, gives developers, the community, and users a chance to test the codes implemented before real assets are involved.
 
-[Ganache](https://www.trufflesuite.com/ganache) enables us to create a private Ethereum blockchain on the local machine for running tests, executing commands, and inspecting its state while controlling how the chain operates.
+[Ganache](https://www.trufflesuite.com/ganache) is such a "testnet" that enables us to create a private Ethereum blockchain on the local machine for running tests, executing commands, and inspecting its state while controlling how the chain operates.
 
 ## Files
 
@@ -36,7 +36,7 @@ There are 3 levels of difficulty, with each contract increasing in complexity an
 
 Navigate to the [Remix IDE](https://remix.ethereum.org) and create a new contract called `AssociateProfitSplitter.sol` using the starter code for level one above.
 
-While developing and testing your contract, use the [Ganache](https://www.trufflesuite.com/ganache) development chain, and point MetaMask to `localhost:8545`, or replace the port with what you have set in your workspace.
+While developing and testing the contract, use the [Ganache](https://www.trufflesuite.com/ganache) development chain, and point MetaMask to `localhost:8545`, or replace the port with what you have set in your workspace.
 
 ### Level One: The `AssociateProfitSplitter` Contract
 
@@ -136,7 +136,7 @@ Test the `deposit` function by sending various values. Keep an eye on the `emplo
 
 ### Level Three: The `DeferredEquityPlan` Contract
 
-In this contract, will be managing an employee's "deferred equity incentive plan" in which 1000 shares will be distributed over 4 years to the employee. We won't need to work with Ether in this contract, but we will be storing and setting amounts that represent the number of distributed shares the employee owns and enforcing the vetting periods automatically.
+In this contract, there will be managing an employee's "deferred equity incentive plan" in which 1000 shares will be distributed over 4 years to the employee. We won't need to work with Ether in this contract, but we will be storing and setting amounts that represent the number of distributed shares the employee owns and enforcing the vetting periods automatically.
 
 * **A two-minute primer on deferred equity incentive plans:** In this set-up, employees receive shares for joining and staying with the firm. They may receive, for example, an award of 1,000 shares when joining, but with a 4 year vesting period for these shares. This means that these shares would stay with the company, with only 250 shares (1,000/4) actually distributed to and owned by the employee each year. If the employee leaves within the first 4 years, he or she would forfeit ownership of any remaining (“unvested”) shares.
 
@@ -184,7 +184,7 @@ In the `Deploy` tab in Remix, deploy the contract to your local Ganache chain by
 
 You will need to fill in the constructor parameters with your designated `employee` addresses.
 
-Test the `distribute` function changing the variable called `uint fakenow = now;`. Utilize the `fastforward` function to manipulate `fakenow` during testing.
+Test the `distribute` function using the variable called `uint fakenow = now`, replacing the instance of `now`. Utilize the `fastforward` function to manipulate `fakenow` during testing. Once satisfied with the contract's logic, rever the `fakenow` testing logic to use the true `now` instance.
 
 ![Remix Testing](Images/level3-1.png)
 
