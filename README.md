@@ -78,6 +78,16 @@ The functions:
 
 * A fallback function using `function() external payable`, and call the `deposit` function from within it. This will ensure that the logic in `deposit` executes if Ether is sent directly to the contract. This is important to prevent Ether from being locked in the contract since we don't have a `withdraw` function in this use-case.
 
+#### Test the contract
+
+In the `Deploy` tab in Remix, deploy the contract to your local Ganache chain by connecting to `Injected Web3` and ensuring MetaMask is pointed to `localhost:8545`.
+
+You will need to fill in the constructor parameters with your designated `employee` addresses.
+
+Test the `deposit` function by sending various values. Keep an eye on the `employee` balances as you send different amounts of Ether to the contract and ensure the logic is executing properly.
+
+![Remix Testing](Images/level1-1.png)
+
 ### Level Two: The `TieredProfitSplitter` Contract
 
 In this contract, rather than splitting the profits between Associate-level employees, will calculate rudimentary percentages for different tiers of employees (CEO, CTO, and Bob).
@@ -113,6 +123,16 @@ The `deposit` function, perform the following:
 * Deploy and test the contract functionality by depositing various Ether values (greater than 100 wei).
 
   * The provided `balance` function can be used as a test to see if the logic you have in the `deposit` function is valid. Since all of the Ether should be transferred to employees, this function should always return `0`, since the contract should never store Ether itself.
+
+#### Test the contract
+
+In the `Deploy` tab in Remix, deploy the contract to your local Ganache chain by connecting to `Injected Web3` and ensuring MetaMask is pointed to `localhost:8545`.
+
+You will need to fill in the constructor parameters with your designated `employee` addresses.
+
+Test the `deposit` function by sending various values. Keep an eye on the `employee` balances as you send different amounts of Ether to the contract and ensure the logic is executing properly.
+
+![Remix Testing](Images/level2-2.png)
 
 ### Level Three: The `DeferredEquityPlan` Contract
 
@@ -157,6 +177,16 @@ The code, perform the following:
     * Make sure to include the parenthesis around `now - start_time` in your calculation to ensure that the order of operations is followed properly.
 
   * The final `if` statement provided checks that in case the employee does not cash out until 5+ years after the contract start, the contract does not reward more than the `total_shares` agreed upon in the contract.
+
+#### Test the contract
+
+In the `Deploy` tab in Remix, deploy the contract to your local Ganache chain by connecting to `Injected Web3` and ensuring MetaMask is pointed to `localhost:8545`.
+
+You will need to fill in the constructor parameters with your designated `employee` addresses.
+
+Test the `distribute` function changing the variable called `uint fakenow = now;`. Utilize the `fastforward` function to manipulate `fakenow` during testing.
+
+![Remix Testing](Images/level3-1.png)
 
 ## Resources
 
